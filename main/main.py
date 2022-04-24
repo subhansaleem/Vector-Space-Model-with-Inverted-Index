@@ -14,14 +14,14 @@ import numpy as np
 lemmatizer = WordNetLemmatizer()
 ps = PorterStemmer()
 
-#creating stopword list
+# creating stopword list
 def stopwds():
     f = open("Stopword-List.txt", "r")
     text = f.read()
     ls = (word_tokenize(text.lower()))
     return ls
 
-#for creating index with words, tf, idf, and tf-idf values
+# for creating index with words, tf, idf, and tf-idf values
 
     # dic = {
     #     'term' : {
@@ -33,7 +33,7 @@ def stopwds():
 
 def createIndex():
     wordDic = []
-    #for all word in 448 documents
+    # for all words in 448 documents
     vector = set()
 
     # stopwords = (word_tokenize(text.lower()))
@@ -68,7 +68,7 @@ def createIndex():
         for word in words:
             ff.write(word + " ")
 
-        #creating word list of documents
+        # creating word list of documents
         wordDic.append(words)
 
         for word in words:
@@ -101,7 +101,7 @@ def createIndex():
     #writing vector to file
     json.dump(vector, open("vector.txt",'w'))
 
-#for searching query in documents
+#searching query in documents
 def search(query):
     alpha = 0.001
     #loading index file
