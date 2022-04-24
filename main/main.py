@@ -128,6 +128,7 @@ def search(query):
     for i in range(448):
         docVector[i]= docVector[i] / math.sqrt(sum(docVector[i]**2))
 
+    query = re.sub(r'[^\w\s]', ' ', query)
     #tokening query
     words = word_tokenize(query)
     #removing stopwords
@@ -168,11 +169,19 @@ def search(query):
     queryVector = queryVector / math.sqrt(sum(queryVector**2))
 
     #calculating for product of documents and query
+    result = []
+    ansValues = []
     for i in range(448):
         ans = sum(x * y for x, y in zip(docVector[i], queryVector))
         if  ans > alpha:
-            print(i+1)
 
+            result.append(i+1)
+            ansValues.append(ans)
+    zipped_lists = zip(ansValues,result)
+    sorted_zipped_lists = sorted(zipped_lists)
+    sorted_list1 = [element for _, element in sorted_zipped_lists]
+
+    print(sorted_list1)
 def main():
     # for creating index
     # createIndex()
